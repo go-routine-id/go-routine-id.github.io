@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>go-routine — small, fast, open developer tools</title>
+<meta name="description" content="go-routine builds focused developer tools and product infrastructure: the flowmaid diagram engine ecosystem, editors, and services — engineered with zero bloat, from Indonesia.">
+<style>
+  :root {
+    --ink: #232840; --muted: #6a7086; --line: #d5d9ec; --accent: #5b6dc0;
+    --accent-dark: #44507a; --bg: #f6f7fc; --green: #33a35c; --violet: #8a5cd6;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: Helvetica, Arial, sans-serif; color: var(--ink); background: #fff; line-height: 1.65; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  header.hero { background: #232840; color: #eef1fb; padding: 84px 0 64px; text-align: center; }
+  .hero h1 { font-size: 52px; letter-spacing: -1px; }
+  .hero h1 .go { color: #7d8fe0; }
+  .hero p.tag { font-size: 20px; color: #aab3d6; margin: 12px auto 8px; max-width: 640px; }
+  .hero p.pun { font-size: 14px; color: #7681ab; font-style: italic; }
+  .hero .cta { display: inline-block; margin: 26px 6px 0; padding: 12px 22px; border-radius: 8px; }
+  .cta.primary { background: var(--accent); color: #fff; }
+  .cta.primary:hover { background: #6d7fd2; text-decoration: none; }
+  .cta.ghost { border: 1px solid #4a5480; color: #cdd4ee; }
+  .cta.ghost:hover { border-color: #7d8fe0; color: #fff; text-decoration: none; }
+
+  section { padding: 56px 0; }
+  section.alt { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  h2 { font-size: 28px; color: var(--accent-dark); margin-bottom: 8px; }
+  p.lead { color: var(--muted); margin-bottom: 26px; }
+
+  .eco { text-align: center; }
+  .eco img { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 2px 16px rgba(35,40,64,.07); }
+  .eco figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .legend span { display: inline-block; margin: 0 10px; font-size: 13px; color: var(--muted); }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: baseline; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+  .card h3 { font-size: 17px; margin-bottom: 6px; }
+  .card p { font-size: 14px; color: var(--muted); }
+  .card .badge { float: right; font-size: 11px; padding: 2px 8px; border-radius: 10px; }
+  .badge.open { background: #e5f5ea; color: #1d7a43; }
+  .badge.lab { background: #f2ecfa; color: #6b3fb0; }
+
+  .vm { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 700px) { .vm { grid-template-columns: 1fr; } }
+  .vm .card h3 { color: var(--accent-dark); font-size: 20px; }
+  .vm .card p { font-size: 15.5px; color: var(--ink); }
+
+  ul.principles { list-style: none; }
+  ul.principles li { margin: 14px 0; padding-left: 30px; position: relative; }
+  ul.principles li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+  ul.principles b { color: var(--accent-dark); }
+  ul.principles span { color: var(--muted); }
+
+  footer { padding: 34px 0 48px; color: var(--muted); font-size: 14px; text-align: center; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1><span class="go">go</span>-routine</h1>
+    <p class="tag">Small, fast, open developer tools — and the products we build on top of them.</p>
+    <p class="pun">Yes, the name is a goroutine pun. Lightweight, concurrent, gets a lot done.</p>
+    <a class="cta primary" href="https://go-routine-id.github.io/flowmaid/">Meet flowmaid →</a>
+    <a class="cta ghost" href="https://go-routine-id.github.io/flowmaid-web/">Playground</a>
+    <a class="cta ghost" href="https://github.com/go-routine-id">GitHub</a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap eco">
+    <h2>What we're building</h2>
+    <p class="lead">This map was rendered by our own diagram engine — that's the point.</p>
+    <figure>
+      <img src="ecosystem.svg" alt="go-routine ecosystem map, rendered by flowmaid">
+      <figcaption class="legend">
+        <span><i class="dot" style="background:#e5f5ea;border:1px solid #33a35c"></i>open source, available now</span>
+        <span><i class="dot" style="background:#f2ecfa;border:1px solid #8a5cd6"></i>in the lab</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <p class="lead">Open source first — the lab graduates when it's ready.</p>
+    <div class="grid">
+      <div class="card"><span class="badge open">open source</span><h3>flowmaid</h3><p>A Mermaid-like diagram engine in pure std Rust. Zero dependencies, sub-millisecond renders, 166 KB in WebAssembly. <a href="https://crates.io/crates/flowmaid">crates.io</a> · <a href="https://github.com/go-routine-id/flowmaid/issues/10">public roadmap</a></p></div>
+      <div class="card"><span class="badge open">open source</span><h3>flowmaid playground</h3><p>The whole engine in your browser — live editing, draggable nodes, SVG export. No server, no build step. <a href="https://go-routine-id.github.io/flowmaid-web/">Try it</a></p></div>
+      <div class="card"><span class="badge open">open source</span><h3>flowmaid desktop</h3><p>A native diagram editor: live Mermaid text, drag & drop canvas, real file workflow. <a href="https://github.com/go-routine-id/flowmaid-desktop">Source</a></p></div>
+      <div class="card"><span class="badge lab">in the lab</span><h3>Diagram studio</h3><p>A full architecture-diagram studio — AI-assisted editing, cloud imports, and flowmaid inside as the layout & routing engine.</p></div>
+      <div class="card"><span class="badge lab">in the lab</span><h3>Product suite</h3><p>Planner, chat, media & notification services, interview tooling — the products that keep our engineering honest about real-world needs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Vision & mission</h2>
+    <div class="vm">
+      <div class="card">
+        <h3>Vision</h3>
+        <p>Software tooling doesn't have to be heavy to be powerful. We believe the next generation of developer tools can be small, fast, and open — and that world-class engineering can come from anywhere, including Indonesia.</p>
+      </div>
+      <div class="card">
+        <h3>Mission</h3>
+        <p>Build focused developer tools and the product infrastructure around them with zero-bloat engineering: measured performance, tested behavior, APIs that feel right — then open as much of it as we can.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>How we work</h2>
+    <ul class="principles">
+      <li><b>Zero-bloat engineering.</b> <span>Our diagram engine has zero dependencies and ships as 166 KB of wasm. Every dependency must earn its place.</span></li>
+      <li><b>Proof over promise.</b> <span>Benchmarks in the repo, CI on every push, a public roadmap with versions on every shipped checkbox — and our own websites are rendered by our own engine.</span></li>
+      <li><b>One engine, many faces.</b> <span>Build the core once, properly; then let the CLI, desktop, web, and products share it. Features land everywhere at once.</span></li>
+      <li><b>Compatibility is kindness.</b> <span>flowmaid chases mermaid.js compatibility so people's existing diagrams just work. Clear, line-numbered errors when something doesn't yet.</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    go-routine · <a href="https://github.com/go-routine-id">github.com/go-routine-id</a> · this page and every diagram on it: rendered by flowmaid
+  </div>
+</footer>
+
+</body>
+</html>
